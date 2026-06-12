@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HireIQ | Recruiter Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #130708;
+      --bg-1: #210b0d;
+      --panel: rgba(30, 12, 14, 0.72);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #fff9f9;
+      --muted: #f5c9c9;
+      --accent: #ff5d5d;
+      --accent-2: #ff8a5b;
+      --shadow: 0 26px 80px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255,93,93,0.22), transparent 28%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-0));
+    }
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 22px 0 28px;
+    }
+    .topbar {
+      width: 100%;
+      height: 56px;
+      margin-bottom: 16px;
+      padding: 0 14px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow);
+    }
+    .topbar__brand { font-weight: 800; letter-spacing: -0.03em; }
+    .topbar__nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .topbar__link {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .topbar__link.is-active {
+      color: #ffd1d1;
+      background: rgba(255, 93, 93, 0.12);
+      border-color: rgba(255, 93, 93, 0.22);
+    }
+    .topbar__profile {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ff5d5d, #ff8a5b);
+      color: #fff;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .hero, .panel {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+    .hero {
+      padding: 28px;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -0.04em;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.7;
+    }
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .panel {
+      padding: 20px;
+      min-height: 150px;
+    }
+    .label {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .value {
+      margin: 0 0 8px;
+      font-size: 28px;
+      font-weight: 800;
+    }
+    .text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .list {
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+    .item__title {
+      margin: 0 0 4px;
+      font-weight: 700;
+    }
+    .item__meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .badge {
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 800;
+      background: rgba(255,93,93,0.14);
+      border: 1px solid rgba(255,93,93,0.25);
+      color: #ffd1d1;
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .page { width: min(100vw - 18px, 100vw); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="topbar__brand">HireIQ</div>
+      <nav class="topbar__nav" aria-label="Primary pages">
+        <a href="student-dashboard.html" class="topbar__link">Track</a>
+        <a href="uploading-section.html" class="topbar__link">Upload</a>
+        <a href="analysis-dashboard.html" class="topbar__link">Analysis</a>
+        <a href="interview.html" class="topbar__link">Interview</a>
+        <a href="career-intelligence-report.html" class="topbar__link">Report</a>
+      </nav>
+      <div class="topbar__profile" aria-label="Profile">R</div>
+    </header>
+    <section class="hero">
+      <p class="eyebrow">Recruiter Workspace</p>
+      <h1>Recruiter Dashboard</h1>
+      <p class="subtitle">This track will later power recruiter matching, applicant filtering, ATS recommendations, and role-fit insights.</p>
+
+      <div class="grid">
+        <article class="panel">
+          <p class="label">Open Roles</p>
+          <p class="value">18</p>
+          <p class="text">Active jobs currently waiting for screening and shortlisting.</p>
+        </article>
+        <article class="panel">
+          <p class="label">New Applicants</p>
+          <p class="value">126</p>
+          <p class="text">Fresh candidates matched against the selected role requirements.</p>
+        </article>
+        <article class="panel">
+          <p class="label">AI Match Rate</p>
+          <p class="value">84%</p>
+          <p class="text">Track fit can later influence resume ranking and outreach suggestions.</p>
+        </article>
+      </div>
+
+      <div class="list">
+        <div class="item">
+          <div>
+            <p class="item__title">React Full Stack Developer</p>
+            <p class="item__meta">48 applicants · 12 shortlisted</p>
+          </div>
+          <span class="badge">Trending</span>
+        </div>
+        <div class="item">
+          <div>
+            <p class="item__title">AI Engineer</p>
+            <p class="item__meta">22 applicants · 5 shortlisted</p>
+          </div>
+          <span class="badge">High Demand</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
